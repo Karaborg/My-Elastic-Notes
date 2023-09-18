@@ -49,4 +49,11 @@ services:
     #volumes:
     #  - ./Kibana/bin:/usr/share/kibana/bin
     #  - ./Kibana/config:/usr/share/kibana/config
-
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.10.1
+    container_name: logstash
+    depends_on:
+      - kibana
+    volumes:
+      - ./Logstash/config:/usr/share/logstash/config
+      - ./Logstash/pipeline:/usr/share/logstash/pipeline
